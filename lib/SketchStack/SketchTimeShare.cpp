@@ -43,11 +43,10 @@ void sketchstack::SketchTimeShare::terminate() {
   Sketch::terminate();
 }
 
-void sketchstack::SketchTimeShare::addSketch(std::shared_ptr<Sketch> sketch) {
+void sketchstack::SketchTimeShare::addSketch(Sketch *sketch) {
   _sketchList.push_back(sketch);
 }
 
-void sketchstack::SketchTimeShare::removeSketch(
-    std::shared_ptr<Sketch> sketch) {
+void sketchstack::SketchTimeShare::removeSketch(Sketch *sketch) {
   _sketchList.remove(sketch);
 }

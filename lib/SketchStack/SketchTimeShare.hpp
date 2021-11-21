@@ -3,7 +3,6 @@
 
 #include "Sketch.hpp"
 #include <list>
-#include <memory>
 
 namespace sketchstack {
 
@@ -17,12 +16,12 @@ public:
   virtual void terminate() override;
 
   /// Add sketch to list.
-  void addSketch(std::shared_ptr<Sketch> sketch);
+  void addSketch(Sketch *sketch);
   /// Remove sketch from list.
-  void removeSketch(std::shared_ptr<Sketch> sketch);
+  void removeSketch(Sketch *sketch);
 
 private:
-  std::list<std::shared_ptr<Sketch>> _sketchList;
+  std::list<Sketch *> _sketchList;
 };
 
 } // namespace sketchstack

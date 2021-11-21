@@ -10,7 +10,7 @@
 #include "./FunctionalSketch.hpp"
 
 #else
-#error "Use of C++ compiler is required"
+#error "C++ compiler is required"
 #endif
 
 #endif

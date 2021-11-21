@@ -43,23 +43,20 @@ void sketchstack::SketchSwitch::terminate() {
   Sketch::terminate();
 }
 
-std::shared_ptr<sketchstack::Sketch>
-sketchstack::SketchSwitch::currentSketch() {
+sketchstack::Sketch *sketchstack::SketchSwitch::currentSketch() {
   return _sketchList.back();
 }
 
-void sketchstack::SketchSwitch::pushSketch(
-    std::shared_ptr<sketchstack::Sketch> sketch) {
+void sketchstack::SketchSwitch::pushSketch(sketchstack::Sketch *sketch) {
   _sketchList.push_back(sketch);
 }
 
-std::shared_ptr<sketchstack::Sketch> sketchstack::SketchSwitch::popSketch() {
+sketchstack::Sketch *sketchstack::SketchSwitch::popSketch() {
   auto back = _sketchList.back();
   _sketchList.pop_back();
   return back;
 }
 
-void sketchstack::SketchSwitch::removeSketch(
-    std::shared_ptr<sketchstack::Sketch> sketch) {
+void sketchstack::SketchSwitch::removeSketch(sketchstack::Sketch *sketch) {
   _sketchList.remove(sketch);
 }

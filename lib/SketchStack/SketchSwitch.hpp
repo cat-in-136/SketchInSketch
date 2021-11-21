@@ -3,7 +3,6 @@
 
 #include "Sketch.hpp"
 #include <list>
-#include <memory>
 
 namespace sketchstack {
 
@@ -22,19 +21,19 @@ public:
   virtual void terminate() override;
 
   /// Get current sketch.
-  std::shared_ptr<Sketch> currentSketch();
+  Sketch *currentSketch();
   /// Push and activate sketch.
-  void pushSketch(std::shared_ptr<Sketch> sketch);
+  void pushSketch(Sketch *sketch);
   /// Pop sketch.
-  std::shared_ptr<Sketch> popSketch();
+  Sketch *popSketch();
   /// Activate sketch.
-  void activateSketch(std::shared_ptr<Sketch> sketch);
+  void activateSketch(Sketch *sketch);
   /// Remove sketch from list.
-  void removeSketch(std::shared_ptr<Sketch> sketch);
+  void removeSketch(Sketch *sketch);
 
 private:
   bool _autoPop;
-  std::list<std::shared_ptr<Sketch>> _sketchList;
+  std::list<Sketch *> _sketchList;
 };
 
 } // namespace sketchstack
