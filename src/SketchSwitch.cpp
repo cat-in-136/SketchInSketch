@@ -46,7 +46,7 @@ void sketchinsketch::SketchSwitch::terminate() {
   Sketch::terminate();
 }
 
-sketchinsketch::Sketch *sketchinsketch::SketchSwitch::currentSketch() {
+sketchinsketch::Sketch *sketchinsketch::SketchSwitch::currentSketch() const {
   return _sketchList.back();
 }
 

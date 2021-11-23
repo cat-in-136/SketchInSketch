@@ -1,8 +1,8 @@
 #include "Sketch.hpp"
 
-const char *sketchinsketch::Sketch::getName() { return nullptr; };
+const char *sketchinsketch::Sketch::getName() const { return nullptr; };
 
-sketchinsketch::SketchStatus sketchinsketch::Sketch::getStatus() {
+sketchinsketch::SketchStatus sketchinsketch::Sketch::getStatus() const {
   return _status;
 };
 

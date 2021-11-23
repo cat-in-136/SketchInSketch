@@ -12,16 +12,16 @@ public:
       : _setup(setup), _loop(loop), _teardown(teardown){};
   ~FunctionalSketch(){};
 
-  virtual void setup() { _setup(); };
+  virtual void setup() override { _setup(); };
   /// loop() which loops consecutively.
-  virtual void loop() { _loop(); };
+  virtual void loop() override { _loop(); };
   /// called when shutdown.
-  virtual void teardown() { _teardown(); };
+  virtual void teardown() override { _teardown(); };
 
   /// set sketch object name.
   void setName(const char *name) { _name = name; }
   /// the sketch object name.
-  virtual const char *getName() { return _name; };
+  virtual const char *getName() const override { return _name; };
 
 protected:
   const char *_name = nullptr;
@@ -37,17 +37,17 @@ public:
   OneOffFunctionalSketch(void (*func)()) : _setup(func){};
   ~OneOffFunctionalSketch(){};
 
-  virtual void setup() {
+  virtual void setup() override {
     _setup();
     terminate();
   };
   /// loop() which loops consecutively.
-  virtual void loop(){/* do nothing */};
+  virtual void loop() override{/* do nothing */};
 
   /// set sketch object name.
   void setName(const char *name) { _name = name; }
   /// the sketch object name.
-  virtual const char *getName() { return _name; };
+  virtual const char *getName() const override { return _name; };
 
 protected:
   const char *_name = nullptr;

@@ -20,7 +20,7 @@ public:
   virtual void terminate() override;
 
   /// Get current sketch.
-  Sketch *currentSketch();
+  Sketch *currentSketch() const;
   /// Push and activate sketch.
   void pushSketch(Sketch *sketch);
   /// Pop sketch.

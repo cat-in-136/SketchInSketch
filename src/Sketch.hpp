@@ -25,9 +25,9 @@ public:
   virtual void teardown(){/* do nothing */};
 
   /// the sketch object name.
-  virtual const char *getName();
+  virtual const char *getName() const;
   /// get status.
-  virtual SketchStatus getStatus();
+  virtual SketchStatus getStatus() const;
 
   /// begin the sketch.
   virtual void begin();
