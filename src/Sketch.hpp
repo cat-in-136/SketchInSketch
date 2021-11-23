@@ -1,5 +1,4 @@
-#ifndef _SKETCH_STACK_SKETCH_H_
-#define _SKETCH_STACK_SKETCH_H_
+#pragma once
 
 namespace sketchinsketch {
 
@@ -18,11 +17,11 @@ enum SketchStatus {
 /// Objected sketch
 class Sketch {
 public:
-  /// setup() which is called when a sketch starts.
+  /// arduino's setup() which is called when a sketch starts.
   virtual void setup() = 0;
-  /// loop() which loops consecutively.
+  /// arduino's loop() which loops consecutively.
   virtual void loop() = 0;
-  /// called when shutdown.
+  /// it is called when shutdown.
   virtual void teardown(){/* do nothing */};
 
   /// the sketch object name.
@@ -30,8 +29,8 @@ public:
   /// get status.
   virtual SketchStatus getStatus();
 
-  /// start the sketch.
-  virtual void start();
+  /// begin the sketch.
+  virtual void begin();
   /// run the sketch.
   virtual void run();
   /// update status for next iteration.
@@ -44,5 +43,3 @@ protected:
   SketchStatus _status = SketchStatus::INIT;
 };
 }; // namespace sketchinsketch
-
-#endif

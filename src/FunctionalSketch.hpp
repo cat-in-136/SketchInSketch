@@ -1,5 +1,4 @@
-#ifndef _SKETCH_STACK_FUNCTIONAL_SKETCH_H_
-#define _SKETCH_STACK_FUNCTIONAL_SKETCH_H_
+#pragma once
 
 #include "Sketch.hpp"
 
@@ -56,5 +55,3 @@ protected:
 };
 
 }; // namespace sketchinsketch
-
-#endif

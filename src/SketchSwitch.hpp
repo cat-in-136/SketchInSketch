@@ -1,5 +1,4 @@
-#ifndef _SKETCH_STACK_SKETCH_SWITCH_H_
-#define _SKETCH_STACK_SKETCH_SWITCH_H_
+#pragma once
 
 #include "Sketch.hpp"
 #include <list>
@@ -37,5 +36,3 @@ private:
 };
 
 } // namespace sketchinsketch
-
-#endif

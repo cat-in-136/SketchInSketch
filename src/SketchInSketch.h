@@ -1,5 +1,6 @@
 #ifndef _SKETCH_IN_SKETCH_H_
 #define _SKETCH_IN_SKETCH_H_
+#pragma once
 
 #ifdef __cplusplus
 

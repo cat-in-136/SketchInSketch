@@ -2,9 +2,11 @@
 
 const char *sketchinsketch::Sketch::getName() { return nullptr; };
 
-sketchinsketch::SketchStatus sketchinsketch::Sketch::getStatus() { return _status; };
+sketchinsketch::SketchStatus sketchinsketch::Sketch::getStatus() {
+  return _status;
+};
 
-void sketchinsketch::Sketch::start() {
+void sketchinsketch::Sketch::begin() {
   if (_status == SketchStatus::INIT) {
     _status = SketchStatus::RUNNING;
     setup();

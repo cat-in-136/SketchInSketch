@@ -2,7 +2,7 @@
 
 void sketchinsketch::SketchSwitch::setup() {
   for (auto sketch : _sketchList) {
-    sketch->start();
+    sketch->begin();
   }
 }
 
@@ -19,7 +19,7 @@ void sketchinsketch::SketchSwitch::next() {
   do {
     auto sketch = currentSketch();
     if (sketch->getStatus() == sketchinsketch::SketchStatus::INIT) {
-      sketch->start();
+      sketch->begin();
     }
     sketch->next();
 
@@ -57,6 +57,7 @@ sketchinsketch::Sketch *sketchinsketch::SketchSwitch::popSketch() {
   return back;
 }
 
-void sketchinsketch::SketchSwitch::removeSketch(sketchinsketch::Sketch *sketch) {
+void sketchinsketch::SketchSwitch::removeSketch(
+    sketchinsketch::Sketch *sketch) {
   _sketchList.remove(sketch);
 }

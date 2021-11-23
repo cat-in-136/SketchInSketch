@@ -2,7 +2,7 @@
 
 void sketchinsketch::SketchTimeShare::setup() {
   for (auto sketch : _sketchList) {
-    sketch->start();
+    sketch->begin();
   }
 }
 
@@ -10,7 +10,7 @@ void sketchinsketch::SketchTimeShare::loop() {
   for (auto sketch : _sketchList) {
     switch (sketch->getStatus()) {
     case SketchStatus::INIT:
-      sketch->start();
+      sketch->begin();
       sketch->run();
       break;
     case SketchStatus::RUNNING:

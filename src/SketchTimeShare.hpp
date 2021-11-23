@@ -1,5 +1,4 @@
-#ifndef _SKETCH_STACK_SKETCH_TIME_SHARE_H_
-#define _SKETCH_STACK_SKETCH_TIME_SHARE_H_
+#pragma once
 
 #include "Sketch.hpp"
 #include <list>
@@ -25,5 +24,3 @@ private:
 };
 
 } // namespace sketchinsketch
-
-#endif
