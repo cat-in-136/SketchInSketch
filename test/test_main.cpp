@@ -2,6 +2,10 @@
 #include <array>
 #include <unity.h>
 
+#ifdef ARDUINO
+#include <Arduino.h>
+#endif
+
 class TestSketchImpl : public sketchinsketch::Sketch {
 public:
   virtual void setup(){};
@@ -218,7 +222,13 @@ void test_sketch_timeshare_lifecycle() {
                     sketch2->getStatus());
 }
 
+#ifdef ARDUINO
+void setup() {
+  delay(2000); // add 2-sec wait for the board w/o software resetting via
+               // Serial.DTR/RTS
+#else
 int main(int argc, char *argv[]) {
+#endif
   UNITY_BEGIN();
   RUN_TEST(test_sketch_lifecycle);
   RUN_TEST(test_functional_sketch_lifecycle);
@@ -227,5 +237,11 @@ int main(int argc, char *argv[]) {
   RUN_TEST(test_sketch_timeshare_lifecycle);
   UNITY_END();
 
+#ifndef ARDUINO
   return 0;
+#endif
 }
+
+#ifdef ARDUINO
+void loop() {}
+#endif
