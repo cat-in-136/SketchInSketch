@@ -28,6 +28,7 @@ void sketchinsketch::SketchSwitch::next() {
     if (_autoPop) {
       if (sketch->getStatus() == sketchinsketch::SketchStatus::TERMINATED) {
         popSketch();
+        continue;
       }
     }
   } while (false);
