@@ -96,6 +96,10 @@ void test_sketch_switch_list_operation() {
   sketch.removeSketch(children[5]);
   TEST_ASSERT_EQUAL(children[6], sketch.popSketch());
   TEST_ASSERT_EQUAL(children[3], sketch.popSketch());
+
+  for (auto v : children) {
+    delete v;
+  }
 }
 
 void test_sketch_switch_lifecycle() {
@@ -165,6 +169,10 @@ void test_sketch_switch_lifecycle() {
                     sketch1->getStatus());
   TEST_ASSERT_EQUAL(sketchinsketch::SketchStatus::TERMINATED,
                     sketch.getStatus());
+
+  delete sketch1;
+  delete sketch2;
+  delete sketch3;
 }
 
 void test_sketch_timeshare_lifecycle() {
@@ -220,6 +228,9 @@ void test_sketch_timeshare_lifecycle() {
                     sketch1->getStatus());
   TEST_ASSERT_EQUAL(sketchinsketch::SketchStatus::TERMINATED,
                     sketch2->getStatus());
+
+  delete sketch1;
+  delete sketch2;
 }
 
 #ifdef ARDUINO
