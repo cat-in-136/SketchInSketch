@@ -233,6 +233,7 @@ int main(int argc, char *argv[]) {
   RUN_TEST(test_sketch_lifecycle);
   RUN_TEST(test_functional_sketch_lifecycle);
   RUN_TEST(test_oneoff_functional_sketch_lifecycle);
+  RUN_TEST(test_sketch_switch_list_operation);
   RUN_TEST(test_sketch_switch_lifecycle);
   RUN_TEST(test_sketch_timeshare_lifecycle);
   UNITY_END();

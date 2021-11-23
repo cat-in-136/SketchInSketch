@@ -26,7 +26,7 @@ public:
   /// Pop sketch.
   Sketch *popSketch();
   /// Activate sketch.
-  void activateSketch(Sketch *sketch);
+  void activateSketch(const Sketch *sketch);
   /// Remove sketch from list.
   void removeSketch(Sketch *sketch);
 

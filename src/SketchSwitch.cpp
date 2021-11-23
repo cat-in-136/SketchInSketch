@@ -60,10 +60,10 @@ sketchinsketch::Sketch *sketchinsketch::SketchSwitch::popSketch() {
 }
 
 void sketchinsketch::SketchSwitch::activateSketch(
-    sketchinsketch::Sketch *sketch) {
-  auto result = std::find(_sketchList.end(), _sketchList.end(), sketch);
+    const sketchinsketch::Sketch *sketch) {
+  auto result = std::find(_sketchList.begin(), _sketchList.end(), sketch);
   if (result != _sketchList.end()) {
-    std::iter_swap(result, _sketchList.end());
+    std::iter_swap(result, --_sketchList.end());
   }
 }
 
