@@ -1,4 +1,5 @@
 #include <SketchInSketch.h>
+#include <array>
 #include <unity.h>
 
 class TestSketchImpl : public sketchinsketch::Sketch {
@@ -74,6 +75,23 @@ void test_oneoff_functional_sketch_lifecycle() {
   TEST_ASSERT_EQUAL(1, setup_called);
   TEST_ASSERT_EQUAL(sketchinsketch::SketchStatus::TERMINATED,
                     sketch.getStatus());
+}
+
+void test_sketch_switch_list_operation() {
+  std::array<sketchinsketch::OneOffFunctionalSketch *, 8> children;
+  sketchinsketch::SketchSwitch sketch;
+  for (uint8_t i = 0; i < children.size(); i++) {
+    children[i] = new sketchinsketch::OneOffFunctionalSketch([] {});
+    sketch.pushSketch(children[i]);
+  }
+
+  TEST_ASSERT_EQUAL(children[7], sketch.popSketch());
+  TEST_ASSERT_EQUAL(children[6], sketch.currentSketch());
+  sketch.activateSketch(children[4]);
+  TEST_ASSERT_EQUAL(children[4], sketch.popSketch());
+  sketch.removeSketch(children[5]);
+  TEST_ASSERT_EQUAL(children[6], sketch.popSketch());
+  TEST_ASSERT_EQUAL(children[3], sketch.popSketch());
 }
 
 void test_sketch_switch_lifecycle() {

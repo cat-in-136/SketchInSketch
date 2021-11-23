@@ -1,5 +1,7 @@
 #include "SketchSwitch.hpp"
 
+#include <algorithm>
+
 void sketchinsketch::SketchSwitch::setup() {
   for (auto sketch : _sketchList) {
     sketch->begin();
@@ -55,6 +57,14 @@ sketchinsketch::Sketch *sketchinsketch::SketchSwitch::popSketch() {
   auto back = _sketchList.back();
   _sketchList.pop_back();
   return back;
+}
+
+void sketchinsketch::SketchSwitch::activateSketch(
+    sketchinsketch::Sketch *sketch) {
+  auto result = std::find(_sketchList.end(), _sketchList.end(), sketch);
+  if (result != _sketchList.end()) {
+    std::iter_swap(result, _sketchList.end());
+  }
 }
 
 void sketchinsketch::SketchSwitch::removeSketch(
