@@ -1,5 +1,4 @@
 #include <SketchInSketch.h>
-#include <array>
 #include <unity.h>
 
 #ifdef ARDUINO
@@ -82,9 +81,10 @@ void test_oneoff_functional_sketch_lifecycle() {
 }
 
 void test_sketch_switch_list_operation() {
-  std::array<sketchinsketch::OneOffFunctionalSketch *, 8> children;
+  static const size_t CHILD_COUNT = 8;
+  sketchinsketch::OneOffFunctionalSketch *children[CHILD_COUNT];
   sketchinsketch::SketchSwitch sketch;
-  for (uint8_t i = 0; i < children.size(); i++) {
+  for (uint8_t i = 0; i < CHILD_COUNT; i++) {
     children[i] = new sketchinsketch::OneOffFunctionalSketch([] {});
     sketch.pushSketch(children[i]);
   }
@@ -97,8 +97,8 @@ void test_sketch_switch_list_operation() {
   TEST_ASSERT_EQUAL(children[6], sketch.popSketch());
   TEST_ASSERT_EQUAL(children[3], sketch.popSketch());
 
-  for (auto v : children) {
-    delete v;
+  for (uint8_t i = 0; i < CHILD_COUNT; i++) {
+    delete children[i];
   }
 }
 

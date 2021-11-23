@@ -1,6 +1,10 @@
 #pragma once
 
 #include "Sketch.hpp"
+
+#ifdef __AVR__
+#include <ArduinoSTL.h>
+#endif
 #include <list>
 
 namespace sketchinsketch {

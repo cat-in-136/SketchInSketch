@@ -1,5 +1,8 @@
 #include "SketchSwitch.hpp"
 
+#ifdef __AVR__
+#include <ArduinoSTL.h>
+#endif
 #include <algorithm>
 
 void sketchinsketch::SketchSwitch::setup() {
