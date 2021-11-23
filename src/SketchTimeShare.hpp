@@ -4,7 +4,7 @@
 #include "Sketch.hpp"
 #include <list>
 
-namespace sketchstack {
+namespace sketchinsketch {
 
 /// Time-share scheduling of multiple sketches
 class SketchTimeShare : public Sketch {
@@ -24,6 +24,6 @@ private:
   std::list<Sketch *> _sketchList;
 };
 
-} // namespace sketchstack
+} // namespace sketchinsketch
 
 #endif

@@ -1,12 +1,12 @@
 #include "SketchTimeShare.hpp"
 
-void sketchstack::SketchTimeShare::setup() {
+void sketchinsketch::SketchTimeShare::setup() {
   for (auto sketch : _sketchList) {
     sketch->start();
   }
 }
 
-void sketchstack::SketchTimeShare::loop() {
+void sketchinsketch::SketchTimeShare::loop() {
   for (auto sketch : _sketchList) {
     switch (sketch->getStatus()) {
     case SketchStatus::INIT:
@@ -25,28 +25,28 @@ void sketchstack::SketchTimeShare::loop() {
   }
 }
 
-void sketchstack::SketchTimeShare::teardown() {
+void sketchinsketch::SketchTimeShare::teardown() {
   // do nothing
 }
 
-void sketchstack::SketchTimeShare::next() {
+void sketchinsketch::SketchTimeShare::next() {
   for (auto sketch : _sketchList) {
     sketch->next();
   }
   Sketch::next();
 }
 
-void sketchstack::SketchTimeShare::terminate() {
+void sketchinsketch::SketchTimeShare::terminate() {
   for (auto sketch : _sketchList) {
     sketch->terminate();
   }
   Sketch::terminate();
 }
 
-void sketchstack::SketchTimeShare::addSketch(Sketch *sketch) {
+void sketchinsketch::SketchTimeShare::addSketch(Sketch *sketch) {
   _sketchList.push_back(sketch);
 }
 
-void sketchstack::SketchTimeShare::removeSketch(Sketch *sketch) {
+void sketchinsketch::SketchTimeShare::removeSketch(Sketch *sketch) {
   _sketchList.remove(sketch);
 }

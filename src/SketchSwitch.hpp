@@ -4,7 +4,7 @@
 #include "Sketch.hpp"
 #include <list>
 
-namespace sketchstack {
+namespace sketchinsketch {
 
 /// Exclusive switching of multiple sketches
 class SketchSwitch : public Sketch {
@@ -36,6 +36,6 @@ private:
   std::list<Sketch *> _sketchList;
 };
 
-} // namespace sketchstack
+} // namespace sketchinsketch
 
 #endif

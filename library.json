@@ -1,0 +1,25 @@
+{
+  "name": "SketchInSketch",
+  "version": "0.0.0",
+  "description": "Base library for objected arduino sketches in an arduino sketch",
+  "keywords": "arduino",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/cat-in-136/SketchInSketch.git"
+  },
+  "authors":
+  [
+    {
+      "name": "@cat_in_136",
+      "email": "cat.in.136+github@gmail.com",
+      "maintainer": true
+    }
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/cat-in-136/SketchInSketch",
+  "dependencies": {
+  },
+  "frameworks": "*",
+  "platforms": "*"
+}

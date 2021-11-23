@@ -1,7 +1,7 @@
 #ifndef _SKETCH_STACK_SKETCH_H_
 #define _SKETCH_STACK_SKETCH_H_
 
-namespace sketchstack {
+namespace sketchinsketch {
 
 /// Sketch status.
 enum SketchStatus {
@@ -43,6 +43,6 @@ protected:
   /// Sketch status.
   SketchStatus _status = SketchStatus::INIT;
 };
-}; // namespace sketchstack
+}; // namespace sketchinsketch
 
 #endif

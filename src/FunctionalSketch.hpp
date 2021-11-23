@@ -3,7 +3,7 @@
 
 #include "Sketch.hpp"
 
-namespace sketchstack {
+namespace sketchinsketch {
 
 /// Simple functional sketch
 class FunctionalSketch : public Sketch {
@@ -55,6 +55,6 @@ protected:
   void (*_setup)();
 };
 
-}; // namespace sketchstack
+}; // namespace sketchinsketch
 
 #endif

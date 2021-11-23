@@ -1,5 +1,5 @@
-#ifndef _SKETCH_STACK_H_
-#define _SKETCH_STACK_H_
+#ifndef _SKETCH_IN_SKETCH_H_
+#define _SKETCH_IN_SKETCH_H_
 
 #ifdef __cplusplus
 
