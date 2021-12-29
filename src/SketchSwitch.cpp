@@ -4,6 +4,7 @@
 #include <ArduinoSTL.h>
 #endif
 #include <algorithm>
+#include <iterator>
 
 void sketchinsketch::SketchSwitch::setup() {
   for (auto sketch : _sketchList) {
@@ -21,20 +22,22 @@ void sketchinsketch::SketchSwitch::teardown() {
 }
 
 void sketchinsketch::SketchSwitch::next() {
-  do {
+  bool flag = false;
+  while (!flag && !_sketchList.empty()) {
     auto sketch = currentSketch();
     if (sketch->getStatus() == sketchinsketch::SketchStatus::INIT) {
       sketch->begin();
     }
     sketch->next();
 
+    flag = true;
     if (_autoPop) {
       if (sketch->getStatus() == sketchinsketch::SketchStatus::TERMINATED) {
         popSketch();
-        continue;
+        flag = false;
       }
     }
-  } while (false);
+  }
 
   if (_sketchList.empty()) {
     terminate();
@@ -69,6 +72,12 @@ void sketchinsketch::SketchSwitch::activateSketch(
   if (result != _sketchList.end()) {
     std::iter_swap(result, --_sketchList.end());
   }
+}
+
+void sketchinsketch::SketchSwitch::insertSketchAt(
+    std::size_t n, sketchinsketch::Sketch *sketch) {
+  auto pos = std::prev(_sketchList.end(), n);
+  _sketchList.insert(pos, sketch);
 }
 
 void sketchinsketch::SketchSwitch::removeSketch(

@@ -31,6 +31,8 @@ public:
   Sketch *popSketch();
   /// Activate sketch.
   void activateSketch(const Sketch *sketch);
+  /// Insert sketch to list.
+  void insertSketchAt(std::size_t n, Sketch *sketch);
   /// Remove sketch from list.
   void removeSketch(Sketch *sketch);
 

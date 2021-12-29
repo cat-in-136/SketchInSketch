@@ -112,6 +112,9 @@ void test_sketch_switch_lifecycle() {
   static uint8_t sketch3_setup_called = 0;
   static uint8_t sketch3_loop_called = 0;
   static uint8_t sketch3_teardown_called = 0;
+  static uint8_t sketch4_setup_called = 0;
+  static uint8_t sketch4_loop_called = 0;
+  static uint8_t sketch4_teardown_called = 0;
 
   auto sketch1 = new sketchinsketch::FunctionalSketch(
       [] { sketch1_setup_called++; }, [] { sketch1_loop_called++; },
@@ -122,6 +125,9 @@ void test_sketch_switch_lifecycle() {
   auto sketch3 = new sketchinsketch::FunctionalSketch(
       [] { sketch3_setup_called++; }, [] { sketch3_loop_called++; },
       [] { sketch3_teardown_called++; });
+  auto sketch4 = new sketchinsketch::FunctionalSketch(
+      [] { sketch4_setup_called++; }, [] { sketch4_loop_called++; },
+      [] { sketch4_teardown_called++; });
   sketchinsketch::SketchSwitch sketch;
   sketch.pushSketch(sketch1);
   sketch.pushSketch(sketch2);
@@ -143,6 +149,7 @@ void test_sketch_switch_lifecycle() {
   TEST_ASSERT_EQUAL(1, sketch2_loop_called);
   sketch.next();
   sketch.pushSketch(sketch3);
+  sketch.insertSketchAt(1, sketch4);
   TEST_ASSERT_EQUAL(sketchinsketch::SketchStatus::INIT, sketch3->getStatus());
   sketch.next();
   TEST_ASSERT_EQUAL(sketchinsketch::SketchStatus::RUNNING,
@@ -150,15 +157,31 @@ void test_sketch_switch_lifecycle() {
   TEST_ASSERT_EQUAL(1, sketch1_setup_called);
   TEST_ASSERT_EQUAL(1, sketch2_setup_called);
   TEST_ASSERT_EQUAL(1, sketch3_setup_called);
+  TEST_ASSERT_EQUAL(0, sketch4_setup_called);
   TEST_ASSERT_EQUAL(sketch3, sketch.currentSketch());
   sketch.run();
   TEST_ASSERT_EQUAL(0, sketch1_loop_called);
   TEST_ASSERT_EQUAL(1, sketch2_loop_called);
   TEST_ASSERT_EQUAL(1, sketch3_loop_called);
+  TEST_ASSERT_EQUAL(0, sketch4_loop_called);
   sketch3->terminate();
   sketch.next();
   TEST_ASSERT_EQUAL(sketchinsketch::SketchStatus::TERMINATED,
                     sketch3->getStatus());
+  TEST_ASSERT_EQUAL(sketch4, sketch.currentSketch());
+  TEST_ASSERT_EQUAL(sketchinsketch::SketchStatus::RUNNING,
+                    sketch4->getStatus());
+  TEST_ASSERT_EQUAL(1, sketch1_setup_called);
+  TEST_ASSERT_EQUAL(1, sketch2_setup_called);
+  TEST_ASSERT_EQUAL(1, sketch3_setup_called);
+  TEST_ASSERT_EQUAL(1, sketch4_setup_called);
+  sketch.run();
+  TEST_ASSERT_EQUAL(0, sketch1_loop_called);
+  TEST_ASSERT_EQUAL(1, sketch2_loop_called);
+  TEST_ASSERT_EQUAL(1, sketch3_loop_called);
+  TEST_ASSERT_EQUAL(1, sketch4_loop_called);
+  sketch4->terminate();
+  sketch.next();
   TEST_ASSERT_EQUAL(sketch2, sketch.currentSketch());
   // sketch2->terminate();
   TEST_ASSERT_EQUAL(sketch2, sketch.popSketch());
@@ -173,6 +196,7 @@ void test_sketch_switch_lifecycle() {
   delete sketch1;
   delete sketch2;
   delete sketch3;
+  delete sketch4;
 }
 
 void test_sketch_timeshare_lifecycle() {
