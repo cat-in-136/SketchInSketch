@@ -42,6 +42,10 @@ void sketchinsketch::SketchSwitch::next() {
   if (_sketchList.empty()) {
     terminate();
   }
+
+  _sketchChanged = _sketchWillBeChanged;
+  _sketchWillBeChanged = false;
+
   Sketch::next();
 }
 
@@ -58,11 +62,13 @@ sketchinsketch::Sketch *sketchinsketch::SketchSwitch::currentSketch() const {
 
 void sketchinsketch::SketchSwitch::pushSketch(sketchinsketch::Sketch *sketch) {
   _sketchList.push_back(sketch);
+  _sketchWillBeChanged = true;
 }
 
 sketchinsketch::Sketch *sketchinsketch::SketchSwitch::popSketch() {
   auto back = _sketchList.back();
   _sketchList.pop_back();
+  _sketchWillBeChanged = true;
   return back;
 }
 
@@ -71,6 +77,7 @@ void sketchinsketch::SketchSwitch::activateSketch(
   auto result = std::find(_sketchList.begin(), _sketchList.end(), sketch);
   if (result != _sketchList.end()) {
     std::iter_swap(result, --_sketchList.end());
+    _sketchWillBeChanged = true;
   }
 }
 
@@ -78,6 +85,7 @@ void sketchinsketch::SketchSwitch::insertSketchAt(
     std::size_t n, sketchinsketch::Sketch *sketch) {
   auto pos = std::prev(_sketchList.end(), n);
   _sketchList.insert(pos, sketch);
+  _sketchWillBeChanged = _sketchWillBeChanged || (n == 0);
 }
 
 void sketchinsketch::SketchSwitch::removeSketch(

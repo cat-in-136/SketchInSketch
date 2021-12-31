@@ -36,8 +36,13 @@ public:
   /// Remove sketch from list.
   void removeSketch(Sketch *sketch);
 
+  /// Check if the active sketch is chenged.
+  bool isSketchChanged() { return _sketchChanged; };
+
 private:
   bool _autoPop;
+  bool _sketchWillBeChanged = false;
+  bool _sketchChanged = false;
   std::list<Sketch *> _sketchList;
 };
 
