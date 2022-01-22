@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Sketch.hpp"
+#include <functional>
 
 namespace sketchinsketch {
 
@@ -8,7 +9,8 @@ namespace sketchinsketch {
 class FunctionalSketch : public Sketch {
 public:
   // constructor
-  FunctionalSketch(void (*setup)(), void (*loop)(), void (*teardown)())
+  FunctionalSketch(std::function<void()> setup, std::function<void()> loop,
+                   std::function<void()> teardown)
       : _setup(setup), _loop(loop), _teardown(teardown){};
   ~FunctionalSketch(){};
 
@@ -25,16 +27,16 @@ public:
 
 protected:
   const char *_name = nullptr;
-  void (*_setup)();
-  void (*_loop)();
-  void (*_teardown)();
+  std::function<void()> _setup;
+  std::function<void()> _loop;
+  std::function<void()> _teardown;
 };
 
 /// Simple one-off functional sketch
 class OneOffFunctionalSketch : public Sketch {
 public:
   // constructor
-  OneOffFunctionalSketch(void (*func)()) : _setup(func){};
+  OneOffFunctionalSketch(std::function<void()> func) : _setup(func){};
   ~OneOffFunctionalSketch(){};
 
   virtual void setup() override {
@@ -51,7 +53,7 @@ public:
 
 protected:
   const char *_name = nullptr;
-  void (*_setup)();
+  std::function<void()> _setup;
 };
 
 }; // namespace sketchinsketch
